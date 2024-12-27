@@ -3,13 +3,31 @@
 import { lusitana } from '@/src/fonts'
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { Button } from '@/src/ui/utils/button'
-import { registerUser } from '@/src/ui/register/action'
+import { action } from '@/src/ui/register/action'
 import { useRouter } from 'next/navigation'
-import { useState, useEffect, useActionState } from 'react';
+import { useState, useEffect, useActionState } from 'react'
 
 export default function RegisterForm() {
-  const initialState = { message: null, errors: {} }
-  const [formState, formAction] = useActionState(registerUser, initialState)
+  //
+  // Define the StateSession type
+  //
+  type actionState = {
+    errors?: {
+      name?: string[]
+      email?: string[]
+      password?: string[]
+    }
+    message?: string | null
+  }
+  //
+  // Initialize the form state with default empty errors object
+  //
+  const initialState: actionState = {
+    errors: {},
+    message: null
+  }
+  const [formState, formAction] = useActionState(action, initialState)
+
   const errorMessage = formState?.message || null
   //
   //  Get Router
