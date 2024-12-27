@@ -1,8 +1,8 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useActionState, type JSX } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { Button } from '@/src/ui/utils/button'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useFormStatus } from 'react-dom';
 import { sessionUser } from '@/src/ui/dashboard/session/action'
 import { fetchSessionInfo } from '@/src/lib/tables/tableSpecific/sessions'
 import { structure_SessionsInfo } from '@/src/lib/tables/structures'
@@ -25,7 +25,7 @@ export default function SessionForm({ id }: { id: number }): JSX.Element {
   //  FormData state
   //
   const initialState = { message: null, errors: {} }
-  const [formState, formAction] = useFormState(sessionUser, initialState)
+  const [formState, formAction] = useActionState(sessionUser, initialState)
   //-------------------------------------------------------------------------
   //  Get Data
   //-------------------------------------------------------------------------

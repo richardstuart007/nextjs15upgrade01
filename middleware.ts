@@ -5,7 +5,7 @@ import {
   Routes_AfterLogin_redirect,
   Routes_Prefix_admin,
   Routes_Login
-} from '@/routes'
+} from '@/validroutes'
 import { writeLogging } from '@/src/lib/tables/tableSpecific/logging'
 import { isAdmin } from '@/src/lib/tables/tableSpecific/sessions'
 import { cookies } from 'next/headers'
@@ -36,7 +36,7 @@ export default async function middleware(req: any): Promise<any> {
   //
   //  Login status (Auth not working yet)
   //
-  const cookie = cookies().get('SessionId')
+  const cookie = (await cookies()).get('SessionId')
   const isLoggedInCookie = !!cookie
   //-------------------------------------------------------------------------------------------------
   //  Allow all API routes

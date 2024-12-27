@@ -1,8 +1,8 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useActionState } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { Button } from '../../utils/button'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useFormStatus } from 'react-dom';
 import { UserEdit } from '@/src/ui/dashboard/user/action'
 import { notFound } from 'next/navigation'
 import DropdownGeneric from '@/src/ui/utils/dropdown/dropdownGeneric'
@@ -20,7 +20,7 @@ export default function Form() {
   //  Form action
   //
   const initialState = { message: null, errors: {} }
-  const [formState, formAction] = useFormState(UserEdit, initialState)
+  const [formState, formAction] = useActionState(UserEdit, initialState)
   //
   //  User State
   //

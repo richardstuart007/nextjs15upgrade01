@@ -1,8 +1,8 @@
 'use client'
-import { useState } from 'react'
+import { useState, useActionState } from 'react';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { Button } from '@/src/ui/utils/button'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useFormStatus } from 'react-dom';
 import { UserEdit } from '@/src/ui/admin/users/useredit/action'
 import type { table_Users } from '@/src/lib/tables/definitions'
 import DropdownGeneric from '@/src/ui/utils/dropdown/dropdownGeneric'
@@ -10,7 +10,7 @@ import { COUNTRIES } from '@/src/ui/utils/countries'
 
 export default function Form({ UserRecord }: { UserRecord: table_Users }) {
   const initialState = { message: null, errors: {}, databaseUpdated: false }
-  const [formState, formAction] = useFormState(UserEdit, initialState)
+  const [formState, formAction] = useActionState(UserEdit, initialState)
   const [u_name, setU_name] = useState(UserRecord.u_name)
   const [u_fedid, setU_fedid] = useState(UserRecord.u_fedid)
   const [u_fedcountry, setU_fedcountry] = useState(UserRecord.u_fedcountry)
